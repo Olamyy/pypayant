@@ -16,3 +16,4 @@ class AuthKeyError(PyPayantError):
 class HttpMethodError(PyPayantError):
     pass
 
+import paystackapi
