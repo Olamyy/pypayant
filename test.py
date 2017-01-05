@@ -19,17 +19,21 @@ class TestBaseAPI(TestCase):
 
     def test_path(self):
         self.base_url = base_url
-        self.base_api = BasePayantAPI(auth_key=config.demo_auth_key, implementation="demo")
+        self.base_api = BasePayantAPI(
+            auth_key=config.demo_auth_key, implementation="demo")
         path = self.base_api._path("payment")
-        self.assertEquals(path, self.base_url[self.base_api.implementation]+ "payment")
+        self.assertEquals(
+            path, self.base_url[self.base_api.implementation] + "payment")
 
 
 class TestClient(TestCase):
     def test_add(self):
-       
+
         base = Client(auth_key=config.demo_auth_key)
-        client = base.add(email=config.test_user["email"], first_name=config.test_user["first_name"],last_name=config.test_user["last_name"],
-                             phone=config.test_user["phone"])
+        client = base.add(email=config.test_user["email"],
+                          first_name=config.test_user["first_name"],
+                          last_name=config.test_user["last_name"],
+                          phone=config.test_user["phone"])
         self.assertEquals(client, config.test_user)
 
     def test_get(self):
@@ -40,12 +44,15 @@ class TestClient(TestCase):
 class TestInvoice(TestCase):
     def test_create(self):
         base = Invoice(auth_key=config.demo_auth_key)
-        client = base.add(client_id=1, due_date="12/30/2016", fee_bearer="client",
+        client = base.add(client_id=1,
+                          due_date="12/30/2016",
+                          fee_bearer="client",
                           items={
-                                "name": "Website Design",
-                                "description": "5 Pages Website plus 1 Year Web Hosting",
-                                "unit_cost": "50000.00",
-                                "quantity": "1"
+                              "name": "Website Design",
+                              "description":
+                              "5 Pages Website plus 1 Year Web Hosting",
+                              "unit_cost": "50000.00",
+                              "quantity": "1"
                           })
 
 

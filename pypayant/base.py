@@ -1,8 +1,9 @@
+from __future__ import print_function  # (at top of module)
 import os
 import requests
 import json
 from pypayant.config import __version__
-from pypayant.errors import AuthKeyError,HttpMethodError
+from pypayant.errors import AuthKeyError, HttpMethodError
 
 
 class BasePayantAPI(object):
@@ -38,7 +39,7 @@ class BasePayantAPI(object):
 
     def _json_parser(self, json_response):
         response = json_response.json()
-        print response
+        print(response)
         status = response.get('status', None)
         message = response.get('message', None)
         data = response.get('data', None)
@@ -57,9 +58,11 @@ class BasePayantAPI(object):
         request = method_map.get(method)
 
         if not request:
-            raise HttpMethodError("Request method not recognised or implemented")
+            raise HttpMethodError(
+                "Request method not recognised or implemented")
 
-        response = request(url, headers=self.http_headers(), data=payload, verify=True)
+        response = request(
+            url, headers=self.http_headers(), data=payload, verify=True)
         if response.status_code == 404:
             return response.status_code, False, "The object request cannot be found", None
 
@@ -67,9 +70,7 @@ class BasePayantAPI(object):
             return self._json_parser(response)
         else:
             body = response.json()
-            print body
-            return response.status_code, body.get('status'), body.get('message'), body.get('errors')
+            print(body)
+            return response.status_code, body.get('status'), body.get(
+                'message'), body.get('errors')
             # return response
-
-
-

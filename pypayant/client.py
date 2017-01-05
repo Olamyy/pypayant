@@ -1,5 +1,6 @@
-from base import BasePayantAPI
-from pypayant import config
+from __future__ import print_function  # (at top of module)
+from .base import BasePayantAPI
+from . import config
 
 
 class Client(BasePayantAPI):
@@ -7,7 +8,15 @@ class Client(BasePayantAPI):
         super(Client, self).__init__(auth_key)
         self.base_client_key = "clients"
 
-    def add(self, first_name, last_name, email, phone, website=None, address=None, state=None, lga=None,
+    def add(self,
+            first_name,
+            last_name,
+            email,
+            phone,
+            website=None,
+            address=None,
+            state=None,
+            lga=None,
             company_Name=None):
         """
 
@@ -23,17 +32,18 @@ class Client(BasePayantAPI):
         :return:
         """
         url = self._path(self.base_client_key)
-        print url
-        request_data = {"company_name": company_Name,
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "email": email,
-                        "phone": phone,
-                        "website": website,
-                        "address": address,
-                        "state": state,
-                        "lga": lga
-                        }
+        print(url)
+        request_data = {
+            "company_name": company_Name,
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "phone": phone,
+            "website": website,
+            "address": address,
+            "state": state,
+            "lga": lga
+        }
         return self._exec_request('POST', url, request_data)
 
     def find(self, client_id):
@@ -45,7 +55,16 @@ class Client(BasePayantAPI):
         url = self._path("{0}/{1}".format(self.base_client_key, client_id))
         return self._exec_request('GET', url)
 
-    def edit(self, client_id, first_name, last_name, email, phone, website=None, address=None, state=None, lga=None,
+    def edit(self,
+             client_id,
+             first_name,
+             last_name,
+             email,
+             phone,
+             website=None,
+             address=None,
+             state=None,
+             lga=None,
              company_Name=None):
         """
         Update a Payant client with the client_id provided
@@ -78,6 +97,7 @@ class Client(BasePayantAPI):
     def delete(self, client_id):
         url = self._path("{0}/{1}".format(self.base_client_key, client_id))
         return self._exec_request('DELETE', url)
+
 
 # test = Client(auth_key=config.demo_auth_key)
 # test.add()

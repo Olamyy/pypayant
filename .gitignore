@@ -8,3 +8,5 @@ client_secret.json
 tags
 source.sh
 .cache
+venv/
+venv-2/

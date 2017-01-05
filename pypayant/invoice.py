@@ -1,4 +1,4 @@
-from base import BasePayantAPI
+from .base import BasePayantAPI
 
 
 class Invoice(BasePayantAPI):
@@ -20,11 +20,11 @@ class Invoice(BasePayantAPI):
         """
         url = self._path(self.base_invoice_key)
         items = {
-                    "name": data.get('item_name'),
-                    "description": data.get('item_description'),
-                    "unit_cost": data.get('item_unit_cost'),
-                    "quantity": data.get('item_quantity')
-                }
+            "name": data.get('item_name'),
+            "description": data.get('item_description'),
+            "unit_cost": data.get('item_unit_cost'),
+            "quantity": data.get('item_quantity')
+        }
         if new:
             request_data = {
                 "client": {
@@ -57,7 +57,8 @@ class Invoice(BasePayantAPI):
         :param reference_code:
         :return:
         """
-        url = self._path("{0}/{1}".format(self.base_invoice_key, reference_code))
+        url = self._path("{0}/{1}".format(self.base_invoice_key,
+                                          reference_code))
         return self._exec_request('GET', url)
 
     def send(self, reference_code):
@@ -67,7 +68,8 @@ class Invoice(BasePayantAPI):
         :return:
         """
         _send_base = "send"
-        url = self._path("{0}/{1}/{2}".format(self.base_invoice_key, _send_base, reference_code))
+        url = self._path("{0}/{1}/{2}".format(self.base_invoice_key,
+                                              _send_base, reference_code))
         return self._exec_request('GET', url)
 
     def history(self, period, start, end):
@@ -79,16 +81,14 @@ class Invoice(BasePayantAPI):
         :return:
         """
         _history_base = "history"
-        url = self._path("{0}/{1}/".format(self.base_invoice_key, _history_base))
-        request_data = {
-            "period": period,
-            "start": start,
-            "end": end
-        }
+        url = self._path("{0}/{1}/".format(self.base_invoice_key,
+                                           _history_base))
+        request_data = {"period": period, "start": start, "end": end}
         return self._exec_request('GET', url, request_data)
 
     def delete(self, reference_code):
-        url = self._path("{0}/{1}".format(self.base_invoice_key, reference_code))
+        url = self._path("{0}/{1}".format(self.base_invoice_key,
+                                          reference_code))
         return self._exec_request('DELETE', url)
 
 
