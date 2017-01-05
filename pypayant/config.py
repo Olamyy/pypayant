@@ -1,3 +1,5 @@
+__version__ = "1.0.0"
+
 demo_auth_key = "2af20ba3197ee1108fa27844ea20b6e9472612a9d0bdadadf30c7bf3"
 
 test_user = {
@@ -11,3 +13,13 @@ test_user = {
             "state": "37",
             "lga": "782"
             }
+
+# def test(**kwargs):
+#     a = 5
+#     if a < 3:
+#         c = 0
+#     else:
+#         c = 1
+#     return c
+#
+# print test()

@@ -2,9 +2,10 @@ import unittest
 from unittest import TestCase
 
 from pypayant import config
-from pypayant.base import BasePyantAPI
+from pypayant.base import BasePayantAPI
 from pypayant.errors import AuthKeyError
 from pypayant.client import Client
+from pypayant.invoice import Invoice
 
 base_url = {
     "demo": "https://api.demo.payant.ng/",
@@ -13,53 +14,39 @@ base_url = {
 
 
 class TestBaseAPI(TestCase):
-    # def __init__(self):
-    #     super(TestBaseAPI).__init__()
-    #     self.base_url = base_url
-    #     self.base_api = BasePyantAPI(auth_key=None, implementation="demo")
-
     def test_raise_auth_key(self):
-        self.assertRaises(AuthKeyError, BasePyantAPI())
+        self.assertRaises(BasePayantAPI(), AuthKeyError)
 
     def test_path(self):
         self.base_url = base_url
-        self.base_api = BasePyantAPI(auth_key=config.demo_auth_key, implementation="demo")
+        self.base_api = BasePayantAPI(auth_key=config.demo_auth_key, implementation="demo")
         path = self.base_api._path("payment")
         self.assertEquals(path, self.base_url[self.base_api.implementation]+ "payment")
 
 
 class TestClient(TestCase):
-    def test_create(self):
+    def test_add(self):
        
         base = Client(auth_key=config.demo_auth_key)
-        client = base.create(email=config.test_user["email"], first_name=config.test_user["first_name"],last_name=config.test_user["last_name"],
+        client = base.add(email=config.test_user["email"], first_name=config.test_user["first_name"],last_name=config.test_user["last_name"],
                              phone=config.test_user["phone"])
-        # self.assertEquals(client, )
+        self.assertEquals(client, config.test_user)
 
     def test_get(self):
         base = Client(auth_key=config.demo_auth_key)
-        client = base.get(1)
-#         self.assertEquals({
-#   "status": "success",
-#   "data": {
-#     "id": 1,
-#     "company_id": 1,
-#     "name": "Albert Specialist Hospital",
-#     "first_name": "Albert",
-#     "last_name": "Jane",
-#     "email": "jane@alberthospital.com",
-#     "phone": "+2348012345678",
-#     "website": "http://www.alberthospital.com",
-#     "address": "Wase II",
-#     "state": "37",
-#     "lga": "782",
-#     "status": "1",
-#     "created_at": "2016-12-21 17:19:10",
-#     "updated_at": "2016-12-21 17:19:10",
-#     "deleted_at": None
-#   }
-# }
-#    ,client)
+        # client = base.edit(1)
+
+
+class TestInvoice(TestCase):
+    def test_create(self):
+        base = Invoice(auth_key=config.demo_auth_key)
+        client = base.add(client_id=1, due_date="12/30/2016", fee_bearer="client",
+                          items={
+                                "name": "Website Design",
+                                "description": "5 Pages Website plus 1 Year Web Hosting",
+                                "unit_cost": "50000.00",
+                                "quantity": "1"
+                          })
 
 
 if __name__ == '__main__':

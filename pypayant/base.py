@@ -1,11 +1,11 @@
 import os
 import requests
 import json
-from pypayant import config, __version__
+from pypayant.config import __version__
 from pypayant.errors import AuthKeyError,HttpMethodError
 
 
-class BasePyantAPI(object):
+class BasePayantAPI(object):
     """
 
     """
@@ -30,18 +30,15 @@ class BasePyantAPI(object):
         return url_path + path
 
     def http_headers(self):
-        text = {
-            "Content-Type": self._content_type,
-            "Authorization": "Bearer " + self.auth_key,
-        }
-        print text
         return {
             "Content-Type": self._content_type,
             "Authorization": "Bearer " + self.auth_key,
+            "user-agent": "pyPayant-{}".format(__version__)
         }
 
     def _json_parser(self, json_response):
         response = json_response.json()
+        print response
         status = response.get('status', None)
         message = response.get('message', None)
         data = response.get('data', None)
@@ -70,7 +67,9 @@ class BasePyantAPI(object):
             return self._json_parser(response)
         else:
             body = response.json()
+            print body
             return response.status_code, body.get('status'), body.get('message'), body.get('errors')
+            # return response
 
 
 
