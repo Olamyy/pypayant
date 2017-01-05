@@ -66,6 +66,7 @@ class BasePayantAPI(object):
         if response.status_code == 404:
             return response.status_code, False, "The object request cannot be found", None
         body = response.json()
+        # import pdb; pdb.set_trace()
         if body.get('status') == 'error':
             return response.status_code, body['status'], body['message'] 
         if response.status_code in [200, 201]:

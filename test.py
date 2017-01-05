@@ -61,6 +61,15 @@ class BaseCallTestCase(TestCase):
         return MockRequest(data, **kwargs)
 
 
+class TestClientReal(TestCase):
+    def test_add_new_client_successfully1(self):
+        base = Client(auth_key=config.demo_auth_key)
+        datas = base.add(email=config.test_user["email"],
+                         first_name=config.test_user["first_name"],
+                         last_name=config.test_user["last_name"],
+                         phone=config.test_user["phone"])
+
+
 class TestClient(BaseCallTestCase):
     def test_add_new_client_successfully(self):
         self.mock_post.return_value = self.mock_response(
@@ -104,21 +113,23 @@ class TestClient(BaseCallTestCase):
         # client = base.edit(1)
 
 
-# class TestInvoice(BaseCallTestCase):
+    # class TestInvoice(BaseCallTestCase):
 class TestInvoice(TestCase):
     def setUp(self):
         super(TestInvoice, self).setUp()
         self.base = Invoice(auth_key=config.demo_auth_key)
 
     def test_create(self):
-        client = self.base.add(
-            client_id=1, due_date="12/30/2016", fee_bearer="client",
-            items={
-                "name": "Website Design",
-                "description": "5 Pages Website plus 1 Year Web Hosting",
-                "unit_cost": "50000.00",
-                "quantity": "1"
-            })
+        client = self.base.add(client_id=1,
+                               due_date="12/30/2016",
+                               fee_bearer="client",
+                               items={
+                                   "name": "Website Design",
+                                   "description":
+                                   "5 Pages Website plus 1 Year Web Hosting",
+                                   "unit_cost": "50000.00",
+                                   "quantity": "1"
+                               })
 
     # def test_invoice_creation_with_error_message(self):
     #     self.mock_post.return_value = self.mock_response(
