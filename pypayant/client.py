@@ -4,19 +4,13 @@ from . import config
 
 
 class Client(BasePayantAPI):
+
     def __init__(self, auth_key):
         super(Client, self).__init__(auth_key)
         self.base_client_key = "clients"
 
-    def add(self,
-            first_name,
-            last_name,
-            email,
-            phone,
-            website=None,
-            address=None,
-            state=None,
-            lga=None,
+    def add(self, first_name, last_name, email, phone,
+            website=None, address=None, state=None, lga=None,
             company_Name=None):
         """
 

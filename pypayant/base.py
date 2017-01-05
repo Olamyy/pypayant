@@ -65,12 +65,9 @@ class BasePayantAPI(object):
             url, headers=self.http_headers(), data=payload, verify=True)
         if response.status_code == 404:
             return response.status_code, False, "The object request cannot be found", None
-
+        body = response.json()
+        if body.get('status') == 'error':
+            return response.status_code, body['status'], body['message'] 
         if response.status_code in [200, 201]:
             return self._json_parser(response)
-        else:
-            body = response.json()
-            print(body)
-            return response.status_code, body.get('status'), body.get(
-                'message'), body.get('errors')
-            # return response
+        response.raise_for_status()

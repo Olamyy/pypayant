@@ -2,11 +2,12 @@ from .base import BasePayantAPI
 
 
 class Invoice(BasePayantAPI):
+
     def __init__(self, auth_key):
         super(Invoice, self).__init__(auth_key)
         self.base_invoice_key = "invoices"
 
-    def add(self, due_date, fee_bearer, new=False, client_id=None, **data):
+    def add(self, new=False, **kwargs):
         """
 
         Create a new invoice
@@ -18,26 +19,15 @@ class Invoice(BasePayantAPI):
         :param client: Client Data
         :return:
         """
+        due_date = kwargs.get('due_date')
+        fee_bearer = kwargs.get('fee_bearer')
+        client_id = kwargs.get('client_id')
+        items = kwargs.get('items')
         url = self._path(self.base_invoice_key)
-        items = {
-            "name": data.get('item_name'),
-            "description": data.get('item_description'),
-            "unit_cost": data.get('item_unit_cost'),
-            "quantity": data.get('item_quantity')
-        }
+
         if new:
             request_data = {
-                "client": {
-                    "company_name": data.get('company_name'),
-                    "first_name": data.get('first_name'),
-                    "last_name": data.get('last_name'),
-                    "email": data.get('email'),
-                    "phone": data.get('phone'),
-                    "website": data.get('website'),
-                    "address": data.get('address'),
-                    "state": data.get('state'),
-                    "lga": data.get('lga')
-                },
+                "client": kwargs.get('client'),
                 "due_date": due_date,
                 "fee_bearer": fee_bearer,
                 "items": items,
@@ -49,7 +39,10 @@ class Invoice(BasePayantAPI):
                 "fee_bearer": fee_bearer,
                 "items": items
             }
-        return self._exec_request('POST', url, request_data)
+        # import ipdb
+        # ipdb.set_trace()
+        new_data = self._exec_request('POST', url, request_data)
+        return new_data
 
     def get(self, reference_code):
         """
