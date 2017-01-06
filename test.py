@@ -123,13 +123,13 @@ class TestInvoice(TestCase):
         client = self.base.add(client_id=1,
                                due_date="12/30/2016",
                                fee_bearer="client",
-                               items={
-                                   "name": "Website Design",
+                               items=[{
+                                   "item": "Website Design",
                                    "description":
                                    "5 Pages Website plus 1 Year Web Hosting",
                                    "unit_cost": "50000.00",
                                    "quantity": "1"
-                               })
+                               }])
 
     # def test_invoice_creation_with_error_message(self):
     #     self.mock_post.return_value = self.mock_response(
