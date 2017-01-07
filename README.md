@@ -42,13 +42,14 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 ##Usage
 
 ```python
-   from pypyant.client import Client
-   from pypyant.payment import Payment
-   from pypyant.invoice import Invoice
-   from pypyant.products import Products
-   from pypyant.misc import Misc
-
-  #Instantitate the Client object to handle all client based actions.  
+   from pypyant import Client, Payment, Invoice, Products, Misc
+   
+   
+   
+   --------------------------------------------------------------------
+   #Client
+   
+   #Instantitate the Client object to handle all client based actions.  
    client = Client(auth_key=YOUR_AUTH_KEY)
     
     
@@ -79,8 +80,9 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete a client
    client.delete(client_id)
    
-   *************
-
+   ---------------------------------------------------------------------------  
+   #Invoice
+   
    #Instantitate the Invoice object to handle all client based actions.  
    invoice = Invoice(auth_key=YOUR_AUTH_KEY)  
    
@@ -125,6 +127,20 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete an invoice
    invoice.delete(reference_code="abcdefghijk")
    
+   ---------------------------------------------------------------------------
+   #Payment
+   
+   #Instantitate the Payment object to handle all client based actions.  
+   payment = Payment(auth_key=YOUR_AUTH_KEY)
+   
+   payment.get(reference_code="abcdfgjhi")
+   
+   payment.history(period="custom", start="01/12/2016" , end="31/12/2016")
+   
+   
+   -----------------------------------------------------------------------
+   #Products
+   
    
 ```
 
@@ -139,6 +155,8 @@ To contribute, fork the repo, make your  changes and create a pull request.
 ## Authors
 
 * [Olamilekan Wahab](https://github.com/Olamyy)
+* [Biola Oyeniyi](https://github.com/gbozee)
+
 
 
 ## License

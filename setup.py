@@ -4,7 +4,7 @@ from pypayant import __version__, __author__, __license__
 
 setup(name='pypayant',
       version=__version__,
-      description='Python wrapper for Pypyant API',
+      description='Python wrapper the Payant API',
       url='https://github.com/Olamyy/pypayant',
       author=__author__,
       author_email='olamyy53@gmail.com',
@@ -15,3 +15,6 @@ setup(name='pypayant',
       packages=['pypayant'],
       zip_safe=False
       )
+Setup (
+
+)

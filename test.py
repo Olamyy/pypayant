@@ -2,9 +2,7 @@ import unittest
 from unittest import TestCase
 from pypayant.base import BasePayantAPI
 from pypayant.errors import AuthKeyError
-from pypayant.client import Client
-from pypayant.invoice import Invoice
-from pypayant.payment import Payment
+from pypayant import Client, Payment, Invoice
 
 try:
     from mock import patch, MagicMock

@@ -16,6 +16,7 @@ class Payment(BasePayantAPI):
         :return:
         """
         url = self._path(self.base_payment_key)
+        print(url)
         request_data = {
             "reference_code": reference_code,
             "date": date,
@@ -35,16 +36,6 @@ class Payment(BasePayantAPI):
                                           reference_code))
         return self._exec_request('GET', url)
 
-    def history(self, period, start, end):
-        """
-        Return invoice history from start to end within specified period
-        :param period:
-        :param start:
-        :param end:
-        :return:
-        """
-        _history_base = "history"
-        url = self._path("{0}/{1}/".format(self.base_payment_key,
-                                           _history_base))
-        request_data = {"period": period, "start": start, "end": end}
-        return self._exec_request('GET', url, request_data)
+    def delete(self, product_id):
+        url = self._path("{0}/{1}".format(self.base_payment_key, product_id))
+        return self._exec_request('DELETE', url)
