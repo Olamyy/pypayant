@@ -26,7 +26,7 @@ import pypayant
 
 If the installation was successful, the code above should run without any error.
 
-If an error like _No module named pypyant_ pops up, then the installation was not succesful.
+If an error like ```No module named pypyant``` pops up, then the installation was not succesful.
 
 
 ##Usage
