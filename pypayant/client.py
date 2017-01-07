@@ -1,6 +1,5 @@
 from __future__ import print_function  # (at top of module)
 from .base import BasePayantAPI
-import pyp
 
 class Client(BasePayantAPI):
 
@@ -91,4 +90,3 @@ class Client(BasePayantAPI):
     def delete(self, client_id):
         url = self._path("{0}/{1}".format(self.base_client_key, client_id))
         return self._exec_request('DELETE', url)
-

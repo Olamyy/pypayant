@@ -38,13 +38,15 @@ class BasePayantAPI(object):
         }
 
     def _json_parser(self, json_response):
+        """Only the status code, the status of the requst and the data
+        is sent back. the message is irrelevant if ths request was successful"""
         response = json_response.json()
         print(response)
         status = response.get('status', None)
         message = response.get('message', None)
         data = response.get('data', None)
 
-        return json_response.status_code, status, message, data
+        return json_response.status_code, status, data
 
     def _exec_request(self, method, url, data=None):
         method_map = {
@@ -64,11 +66,15 @@ class BasePayantAPI(object):
         response = request(
             url, headers=self.http_headers(), data=payload, verify=True)
         if response.status_code == 404:
-            return response.status_code, False, "The object request cannot be found", None
+            msg = "The object request cannot be found"
+            if response.json().get('message'):
+                body = response.json()
+            return response.status_code, body['status'], body['message']
+            # return response.status_code, False, msg, None
         body = response.json()
         # import pdb; pdb.set_trace()
         if body.get('status') == 'error':
-            return response.status_code, body['status'], body['message'] 
+            return response.status_code, body['status'], body['message']
         if response.status_code in [200, 201]:
             return self._json_parser(response)
         response.raise_for_status()
