@@ -41,7 +41,8 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 
 ##Usage
 
-```from pypyant.client import Client
+```python
+   from pypyant.client import Client
    from pypyant.payment import Payment
    from pypyant.invoice import Invoice
    from pypyant.products import Products
