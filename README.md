@@ -53,11 +53,14 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
     
     
    #Add a new client
-   client.add(first_name="Olamilekan",last_name"Wahab",email="olamyy53@gmail.com",phone="000000000000",
+   response = client.add(first_name="Olamilekan",last_name"Wahab",email="olamyy53@gmail.com",phone="000000000000",
                 website=None, address=None, state=None, lga=None,
                 company_name=None)
-                
-                
+    
+    # A tuple of 3 elements is always returned if successful or if there
+    # was a 404 error.
+    #(status_code, status('error'|'success'), message|data)
+    
    #Find a new client by passing the client id.
    client.get(client_id=1)
     
@@ -109,6 +112,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
                         "quantity": "1" 
                         }
     
+    
    #Get an invoice
    invoice.get(reference_code="jklmmopujij")
    
@@ -143,6 +147,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Biola Oyeniyi
+* [Biola Oyeniyi](https://github.com/gbozee)
 
 
