@@ -2,7 +2,7 @@ from __future__ import print_function  # (at top of module)
 import os
 import requests
 import json
-from pypayant.config import __version__
+from pypayant import __version__
 from pypayant.errors import AuthKeyError, HttpMethodError
 
 

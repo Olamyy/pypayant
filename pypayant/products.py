@@ -13,10 +13,6 @@ class Product(BasePayantAPI):
         :param unit_cost:
         :param description:
         :param name:
-        :param reference_code:
-        :param date:
-        :param amount:
-        :param channel:
         :return:
         """
         url = self._path(self.base_product_key)
