@@ -1,6 +1,6 @@
 from __future__ import print_function  # (at top of module)
 from .base import BasePayantAPI
-
+import pyp
 
 class Client(BasePayantAPI):
 
@@ -40,7 +40,7 @@ class Client(BasePayantAPI):
         }
         return self._exec_request('POST', url, request_data)
 
-    def find(self, client_id):
+    def get(self, client_id):
         """
         Get details of a client with the id provided
         :param client_id:
@@ -59,7 +59,7 @@ class Client(BasePayantAPI):
              address=None,
              state=None,
              lga=None,
-             company_name=None):
+             company_Name=None):
         """
         Update a Payant client with the client_id provided
         :param client_id:
@@ -76,7 +76,7 @@ class Client(BasePayantAPI):
         """
         url = self._path("{0}/{1}".format(self.base_client_key, client_id))
         request_data = {
-            "company_name": company_name,
+            "company_name": company_Name,
             "first_name": first_name,
             "last_name": last_name,
             "email": email,

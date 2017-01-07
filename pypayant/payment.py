@@ -1,3 +1,4 @@
+from pypayant import config
 from pypayant.base import BasePayantAPI
 
 
@@ -39,4 +40,5 @@ class Payment(BasePayantAPI):
     def delete(self, product_id):
         url = self._path("{0}/{1}".format(self.base_payment_key, product_id))
         return self._exec_request('DELETE', url)
+
 

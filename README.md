@@ -48,27 +48,25 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    from pypyant.products import Products
    from pypyant.misc import Misc
 
-  #Instantitate the Client object to handle all client based events.
-    
-    
+  #Instantitate the Client object to handle all client based actions.  
    client = Client(auth_key=YOUR_AUTH_KEY)
     
     
    #Add a new client
-   client.add("Olamilekan", "Wahab", "olamyy53@gmail.com", "000000000000",
+   client.add(first_name="Olamilekan",last_name"Wahab",email="olamyy53@gmail.com",phone="000000000000",
                 website=None, address=None, state=None, lga=None,
                 company_name=None)
                 
                 
    #Find a new client by passing the client id.
-   client.find(client_id)
+   client.get(client_id=1)
     
    #Edit a client detail
-   client.edit(3,
-                 "Olamilekan",
-                 "Fadil",
-                 "olamyy53@gmail.com",
-                 "1111111111",
+   client.edit(client_id=1,
+                 first_name"Olamilekan",
+                 last_name="Fadil",
+                 email="olamyy53@gmail.com",
+                 phone="1111111111",
                  website="github.com/Olamyy",
                  address="Ilab, Obafemi Awolowo University",
                  state="Osun",
@@ -77,6 +75,53 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
     
    #Delete a client
    client.delete(client_id)
+   
+   ---
+
+   #Instantitate the Invoice object to handle all client based actions.  
+   invoice = Invoice(auth_key=YOUR_AUTH_KEY)  
+   
+   #Add an invoice for an existing user
+   invoice.add(client_id=1,due_date="12/30/2016",fee_bearer="client",
+                items={
+                        "name": "Website Design",
+                        "description": "5 Pages Website plus 1 Year Web Hosting",
+                        "unit_cost": "50000.00",
+                        "quantity": "1")
+   
+   #Add an invoice for a new user
+   client = {
+            "company_name": "Albert Specialist Hospital",
+            "first_name": "Albert",
+            "last_name": "Jane",
+            "email": "jane@alberthospital.com",
+            "phone": "+2348012345678",
+            "website": "http://www.alberthospital.com",
+            "address": "Wase II",
+            "state": "37",
+            "lga": "782"
+            }
+   invoice.add(new=True, client, due_date="12/30/2016",fee_bearer="client",
+                  items={
+                        "name": "Website Design",
+                        "description": "5 Pages Website plus 1 Year Web Hosting",
+                        "unit_cost": "50000.00",
+                        "quantity": "1" 
+                        }
+    
+   #Get an invoice
+   invoice.get(reference_code="jklmmopujij")
+   
+   #Send an invoice
+   invoice.send(reference_code="abcdefghijk")
+   
+   #Get an invoice history
+   invoice.history(period="custom", start="01/12/2016" , end="31/12/2016")
+   
+   #Delete an invoice
+   invoice.delete(reference_code="abcdefghijk")
+   
+   
 ```
 
 
