@@ -39,6 +39,7 @@ class Invoice(BasePayantAPI):
                 "fee_bearer": fee_bearer,
                 "items": items
             }
+        # import ipdb; ipdb.set_trace()
         new_data = self._exec_request('POST', url, request_data)
         return new_data
 

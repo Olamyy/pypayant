@@ -102,7 +102,7 @@ class TestClient(BaseCallTestCase):
             overwrite=True)
 
         base = Client(auth_key=config.demo_auth_key)
-        code, status, message, client = base.add(
+        code, status, client = base.add(
             email=config.test_user["email"],
             first_name=config.test_user["first_name"],
             last_name=config.test_user["last_name"],
@@ -110,7 +110,6 @@ class TestClient(BaseCallTestCase):
         self.assertEquals(client, config.test_user)
         self.assertEqual(code, 200),
         self.assertEqual(status, 'success')
-        self.assertEqual(message, "Client created successfully.")
 
     def test_when_existing_user_exists(self):
         self.mock_post.return_value = self.mock_response(
@@ -143,22 +142,78 @@ class TestInvoice(TestCase):
         client = self.base.add(client_id=1,
                                due_date="12/30/2016",
                                fee_bearer="client",
-                               items={
+                               items=[{
                                    "item": "Website Design",
                                    "description":
                                    "5 Pages Website plus 1 Year Web Hosting",
                                    "unit_cost": "50000.00",
                                    "quantity": "1"
-                               })
+                               }])
+        # import pdb
+        # pdb.set_trace()
+
+
+class TestInvoiceMock(BaseCallTestCase):
+    def setUp(self):
+        super().setUp()
+        self.base = Invoice(auth_key=config.demo_auth_key)
+
+    def test_invoice_was_successfully_created(self):
+        data = {
+            'due_date': '1483056000',
+            'company_id': '16',
+            'payment_id': None,
+            'client': config.test_user,
+            'updated_at': '2017-01-07 09:54:46',
+            'id': '37',
+            'fee_bearer': 'client',
+            'deleted_at': None,
+            'reference_code': 'EPC8ImHqnFYNdjz4AOsp',
+            'items': []
+        }
+        self.mock_post.return_value = self.mock_response(
+            {
+                'data': data,
+                'message': 'Invoice created successfully.',
+                'status': 'success'
+            },
+            overwrite=True,
+            status_code=200)
+        client = self.base.add(client_id=1,
+                               due_date="12/30/2016",
+                               fee_bearer="client",
+                               items=[{
+                                   "item": "Website Design",
+                                   "description":
+                                   "5 Pages Website plus 1 Year Web Hosting",
+                                   "unit_cost": "50000.00",
+                                   "quantity": "1"
+                               }])
+        self.assertEqual(client[0], 200)
+        self.assertEqual(client[1], 'success')
+        self.assertEqual(client[2], data)
 
     def test_invoice_creation_with_error_message(self):
         self.mock_post.return_value = self.mock_response(
             {
-                'message': "Client created successfully.",
-                "status": "success",
-                "data": config.test_user
+                'message': "Client not found",
+                "status": "error",
             },
-            overwrite=True)
+            overwrite=True,
+            status_code=404)
+        client = self.base.add(client_id=1,
+                               due_date="12/30/2016",
+                               fee_bearer="client",
+                               items=[{
+                                   "item": "Website Design",
+                                   "description":
+                                   "5 Pages Website plus 1 Year Web Hosting",
+                                   "unit_cost": "50000.00",
+                                   "quantity": "1"
+                               }])
+        self.assertEqual(client[0], 404)
+        self.assertEqual(client[1], 'error')
+        self.assertEqual(client[2], 'Client not found')
 
 
 class TestPayment(TestCase):
