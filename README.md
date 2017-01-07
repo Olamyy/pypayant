@@ -46,7 +46,6 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    
    
    
-   --------------------------------------------------------------------
    #Client
    
    #Instantitate the Client object to handle all client based actions.  
@@ -80,7 +79,6 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete a client
    client.delete(client_id)
    
-   ---------------------------------------------------------------------------  
    #Invoice
    
    #Instantitate the Invoice object to handle all client based actions.  
@@ -127,7 +125,8 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete an invoice
    invoice.delete(reference_code="abcdefghijk")
    
-   ---------------------------------------------------------------------------
+
+
    #Payment
    
    #Instantitate the Payment object to handle all client based actions.  
@@ -138,7 +137,6 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    payment.history(period="custom", start="01/12/2016" , end="31/12/2016")
    
    
-   -----------------------------------------------------------------------
    #Products
    
    
@@ -150,7 +148,9 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 To contribute, fork the repo, make your  changes and create a pull request.
 
 
-
+##Todo
+ Complete ReadME
+ More Tests
 
 ## Authors
 
