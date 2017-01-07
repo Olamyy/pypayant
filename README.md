@@ -48,8 +48,6 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    from pypyant.products import Products
    from pypyant.misc import Misc
 
-
-  #Working with Clients
   #Instantitate the Client object to handle all client based actions.  
    client = Client(auth_key=YOUR_AUTH_KEY)
     
@@ -78,9 +76,8 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete a client
    client.delete(client_id)
    
-   --------------------------------------------------------------------------------
-   ###Working with Invoices 
-    
+   *************
+
    #Instantitate the Invoice object to handle all client based actions.  
    invoice = Invoice(auth_key=YOUR_AUTH_KEY)  
    
@@ -125,15 +122,8 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    invoice.delete(reference_code="abcdefghijk")
    
    
-   ------------------------------------------------------------------------------------
-   #Working
-   
-   
 ```
 
-
-## Todo
-Finish Tests and Documentation
 
 ## Contributing
 
