@@ -6,6 +6,8 @@ from pypayant.base import BasePayantAPI
 from pypayant.errors import AuthKeyError
 from pypayant.client import Client
 from pypayant.invoice import Invoice
+from pypayant.payment import Payment
+
 try:
     from mock import patch, MagicMock
 except ImportError:
@@ -113,7 +115,6 @@ class TestClient(BaseCallTestCase):
         # client = base.edit(1)
 
 
-    # class TestInvoice(BaseCallTestCase):
 class TestInvoice(TestCase):
     def setUp(self):
         super(TestInvoice, self).setUp()
@@ -126,7 +127,7 @@ class TestInvoice(TestCase):
                                items={
                                    "name": "Website Design",
                                    "description":
-                                   "5 Pages Website plus 1 Year Web Hosting",
+                                       "5 Pages Website plus 1 Year Web Hosting",
                                    "unit_cost": "50000.00",
                                    "quantity": "1"
                                })
@@ -139,6 +140,21 @@ class TestInvoice(TestCase):
                 "data": config.test_user
             },
             overwrite=True)
+
+
+class TestPayment(TestCase):
+    def setUp(self):
+        super(TestPayment, self).setUp()
+        self.base = Payment(auth_key=config.demo_auth_key)
+
+    def test_create(self):
+        client = self.base.add(
+            reference_code="j9CbiTN0oJe4vWhglyS2",
+            date="12/21/2016",
+            amount="10, 000",
+            channel="Cash"
+        )
+        print(client)
 
 
 if __name__ == '__main__':

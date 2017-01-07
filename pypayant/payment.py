@@ -1,3 +1,4 @@
+from pypayant import config
 from pypayant.base import BasePayantAPI
 
 
@@ -16,13 +17,15 @@ class Payment(BasePayantAPI):
         :return:
         """
         url = self._path(self.base_payment_key)
+        print(url)
         request_data = {
             "reference_code": reference_code,
             "date": date,
             "amount": amount,
             "channel": channel
         }
-        return self._exec_request('POST', url, request_data)
+        response = self._exec_request('POST', url, request_data)
+        return response
 
     def get(self, reference_code):
         """
@@ -37,3 +40,4 @@ class Payment(BasePayantAPI):
     def delete(self, product_id):
         url = self._path("{0}/{1}".format(self.base_payment_key, product_id))
         return self._exec_request('DELETE', url)
+
