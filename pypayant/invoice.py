@@ -39,8 +39,6 @@ class Invoice(BasePayantAPI):
                 "fee_bearer": fee_bearer,
                 "items": items
             }
-        # import ipdb
-        # ipdb.set_trace()
         new_data = self._exec_request('POST', url, request_data)
         return new_data
 
@@ -83,27 +81,3 @@ class Invoice(BasePayantAPI):
         url = self._path("{0}/{1}".format(self.base_invoice_key,
                                           reference_code))
         return self._exec_request('DELETE', url)
-
-
-items = {
-    "name": "Website Design",
-    "description": "5 Pages Website plus 1 Year Web Hosting",
-    "unit_cost": "50000.00",
-    "quantity": "1"
-}
-
-test_user = {
-    "company_name": "Albert Specialist Hospital",
-    "first_name": "Albert",
-    "last_name": "Jane",
-    "email": "jane@alberthospital.com",
-    "phone": "+2348012345678",
-    "website": "http://www.alberthospital.com",
-    "address": "Wase II",
-    "state": "37",
-    "lga": "782"
-}
-#
-# test = Invoice(auth_key="2af20ba3197ee1108fa27844ea20b6e9472612a9d0bdadadf30c7bf3")
-# # print test.add(client=test_user, due_date="12/30/2016", fee_bearer="client", items=items, new=True)
-# test.add(due_date="12/30/2016", fee_bearer="client", items="", new=False)

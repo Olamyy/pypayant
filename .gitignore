@@ -10,3 +10,6 @@ source.sh
 .cache
 venv/
 venv-2/
+test.py
+pypayant/__pycache__/
+.gitignore

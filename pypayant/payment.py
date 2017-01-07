@@ -1,6 +1,3 @@
-import requests
-
-from pypayant import config
 from pypayant.base import BasePayantAPI
 
 
@@ -26,13 +23,19 @@ class Payment(BasePayantAPI):
             "amount": amount,
             "channel": channel
         }
-        return self._exec_request('POST', url, request_data)
-        # return requests.request('POST', url, data=request_data)
+        response = self._exec_request('POST', url, request_data)
+        return response
 
+    def get(self, reference_code):
+        """
+        Get the details of a payment with the reference_code provided.
+        :param reference_code:
+        :return:
+        """
+        url = self._path("{0}/{1}".format(self.base_payment_key,
+                                          reference_code))
+        return self._exec_request('GET', url)
 
-test = Payment(auth_key=config.demo_auth_key)
-print (test.add(reference_code="j9CbiTN0oJe4vWhglyS2",
-               date="12/21/2016",
-               amount="50,0000",
-               channel="Cash")
-)
+    def delete(self, product_id):
+        url = self._path("{0}/{1}".format(self.base_payment_key, product_id))
+        return self._exec_request('DELETE', url)
