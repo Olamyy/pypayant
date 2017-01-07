@@ -1,7 +1,7 @@
 import unittest
 from unittest import TestCase
 
-from pypayant import config
+# from pypayant import config
 from pypayant.base import BasePayantAPI
 from pypayant.errors import AuthKeyError
 from pypayant.client import Client
@@ -12,6 +12,25 @@ try:
     from mock import patch, MagicMock
 except ImportError:
     from unittest.mock import patch, MagicMock
+
+
+class TestConfig(object):
+    demo_auth_key = "2af20ba3197ee1108fa27844ea20b6e9472612a9d0bdadadf30c7bf3"
+
+    test_user = {
+        "company_name": "Albert Specialist Hospital",
+        "first_name": "Albert",
+        "last_name": "Jane",
+        "email": "jane@alberthospital.com",
+        "phone": "+2348012345678",
+        "website": "http://www.alberthospital.com",
+        "address": "Wase II",
+        "state": "37",
+        "lga": "782"
+    }
+
+
+config = TestConfig
 
 base_url = {
     "demo": "https://api.demo.payant.ng/",
@@ -125,9 +144,9 @@ class TestInvoice(TestCase):
                                due_date="12/30/2016",
                                fee_bearer="client",
                                items={
-                                   "name": "Website Design",
+                                   "item": "Website Design",
                                    "description":
-                                       "5 Pages Website plus 1 Year Web Hosting",
+                                   "5 Pages Website plus 1 Year Web Hosting",
                                    "unit_cost": "50000.00",
                                    "quantity": "1"
                                })
@@ -148,12 +167,10 @@ class TestPayment(TestCase):
         self.base = Payment(auth_key=config.demo_auth_key)
 
     def test_create(self):
-        client = self.base.add(
-            reference_code="j9CbiTN0oJe4vWhglyS2",
-            date="12/21/2016",
-            amount="10, 000",
-            channel="Cash"
-        )
+        client = self.base.add(reference_code="j9CbiTN0oJe4vWhglyS2",
+                               date="12/21/2016",
+                               amount="10, 000",
+                               channel="Cash")
         print(client)
 
 
