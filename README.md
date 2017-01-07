@@ -76,7 +76,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    #Delete a client
    client.delete(client_id)
    
-   ---
+   *************
 
    #Instantitate the Invoice object to handle all client based actions.  
    invoice = Invoice(auth_key=YOUR_AUTH_KEY)  
@@ -127,7 +127,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 
 ## Contributing
 
-For contributing, fork the repo, make your  changes and create a pull request.
+To contribute, fork the repo, make your  changes and create a pull request.
 
 
 
