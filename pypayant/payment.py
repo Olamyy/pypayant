@@ -1,4 +1,3 @@
-from pypayant import config
 from pypayant.base import BasePayantAPI
 
 

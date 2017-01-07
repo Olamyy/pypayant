@@ -21,7 +21,7 @@ class BasePayantAPI(object):
         if not auth_key:
             raise AuthKeyError("Authentication key is not provided.")
         else:
-            self.auth_key = os.getenv("Pypayant_AUTH_KEY", None)
+            self.auth_key = os.getenv("PAYANT_AUTH_KEY", None)
         if auth_key:
             self.auth_key = auth_key
         self.implementation = implementation

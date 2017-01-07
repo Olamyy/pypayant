@@ -59,7 +59,7 @@ class Client(BasePayantAPI):
              address=None,
              state=None,
              lga=None,
-             company_Name=None):
+             company_name=None):
         """
         Update a Payant client with the client_id provided
         :param client_id:
@@ -76,7 +76,7 @@ class Client(BasePayantAPI):
         """
         url = self._path("{0}/{1}".format(self.base_client_key, client_id))
         request_data = {
-            "company_name": company_Name,
+            "company_name": company_name,
             "first_name": first_name,
             "last_name": last_name,
             "email": email,
