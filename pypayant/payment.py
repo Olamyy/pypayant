@@ -19,16 +19,20 @@ class Payment(BasePayantAPI):
         :return:
         """
         url = self._path(self.base_payment_key)
-        print url
+        print(url)
         request_data = {
-                        "reference_code": reference_code,
-                        "date": date,
-                        "amount": amount,
-                        "channel": channel
-                       }
+            "reference_code": reference_code,
+            "date": date,
+            "amount": amount,
+            "channel": channel
+        }
         return self._exec_request('POST', url, request_data)
         # return requests.request('POST', url, data=request_data)
 
+
 test = Payment(auth_key=config.demo_auth_key)
-print test.add(reference_code="j9CbiTN0oJe4vWhglyS2", date="12/21/2016",
-            amount="50,0000", channel="Cash")
+print (test.add(reference_code="j9CbiTN0oJe4vWhglyS2",
+               date="12/21/2016",
+               amount="50,0000",
+               channel="Cash")
+)
