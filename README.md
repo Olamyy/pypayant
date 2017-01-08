@@ -131,14 +131,46 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
    
    #Instantitate the Payment object to handle all client based actions.  
    payment = Payment(auth_key=YOUR_AUTH_KEY)
-   
+    
+   #Get  a new payment
    payment.get(reference_code="abcdfgjhi")
    
+   #Get Payment History
    payment.history(period="custom", start="01/12/2016" , end="31/12/2016")
    
    
    #Products
+   #Instantitate the Products object to handle all client based actions.  
+   product = Products(auth_key=YOUR_AUTH_KEY)
    
+   #Add a new product item
+   product.add(name="Test Product", description="Product Testing", unit_cost="15000", type="product")
+
+
+   #Get a single product
+   product.get_one(product_id="c")
+
+   #Get Multiple product
+   product.get_multiple()
+
+   #Edit product details.
+   product.edit(product_id="abcdefghijk", name="Test", description="Product", unit_cost="12000", type="service")
+    
+   #Delete product
+   product.delete(product_id="abcdefghijk")
+   
+  
+    
+  ##Misc
+  ###The auhthentication is not really important here so you could either leave it as an empty string or still pass it.
+  misc = Misc(auth_ke=" ")
+  
+  #Get states
+  misc.get_states()
+
+  
+  #Get lga
+  misc.get_lga(state_id=1)
    
 ```
 
@@ -149,7 +181,6 @@ To contribute, fork the repo, make your  changes and create a pull request.
 
 
 ##Todo
- Complete ReadME
  More Tests
 
 ## Authors

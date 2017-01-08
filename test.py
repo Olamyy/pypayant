@@ -222,8 +222,7 @@ class TestPayment(TestCase):
                                date="12/21/2016",
                                amount="10, 000",
                                channel="Cash")
-        print(client)
-
+        ##@Todo: Complete tests
 
 if __name__ == '__main__':
     unittest.main()

@@ -41,7 +41,6 @@ class BasePayantAPI(object):
         """Only the status code, the status of the requst and the data
         is sent back. the message is irrelevant if ths request was successful"""
         response = json_response.json()
-        print(response)
         status = response.get('status', None)
         message = response.get('message', None)
         data = response.get('data', None)

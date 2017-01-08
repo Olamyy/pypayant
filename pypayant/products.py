@@ -58,3 +58,9 @@ class Product(BasePayantAPI):
         }
         return self._exec_request('PUT', url, request_data)
 
+    def delete(self, product_id):
+        url = self._path("{0}/{1}".format(self.base_product_key,
+                                          product_id))
+        return self._exec_request('DELETE', url)
+
+
