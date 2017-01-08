@@ -11,9 +11,6 @@ source.sh
 venv/
 venv-2/
 test.py
-pypayant/__pycache__/
-.gitignore
 pypayant.egg-info
-build
 dist
-MANIFEST.in
+

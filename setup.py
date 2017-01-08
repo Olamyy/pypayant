@@ -15,6 +15,4 @@ setup(name='pypayant',
       packages=['pypayant'],
       zip_safe=False
       )
-Setup (
 
-)
