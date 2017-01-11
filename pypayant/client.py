@@ -8,8 +8,8 @@ class Client(BasePayantAPI):
         self.base_client_key = "clients"
 
     def add(self, first_name, last_name, email, phone,
-            website=None, address=None, state=None, lga=None,
-            company_name=None):
+            website=None, address=None, Type=None, settlement_bank=None,
+            account_number=None, company_name=None):
         """
 
         Creates a new payant client
@@ -19,8 +19,9 @@ class Client(BasePayantAPI):
         :param email:
         :param phone:
         :param address:
-        :param state:
-        :param lga:
+        :param Type:
+        :param settlement_bank:
+        :param account_number:
         :param company_Name:
         :return:
         """
@@ -34,8 +35,9 @@ class Client(BasePayantAPI):
             "phone": phone,
             "website": website,
             "address": address,
-            "state": state,
-            "lga": lga
+            "type": Type,
+            "settlement_bank": settlement_bank,
+            "account_number": account_number
         }
         return self._exec_request('POST', url, request_data)
 
@@ -56,9 +58,10 @@ class Client(BasePayantAPI):
              phone,
              website=None,
              address=None,
-             state=None,
-             lga=None,
-             company_Name=None):
+             Type=None, 
+             settlement_bank=None,
+             account_number=None, 
+             company_name=None):
         """
         Update a Payant client with the client_id provided
         :param client_id:
@@ -68,8 +71,9 @@ class Client(BasePayantAPI):
         :param phone:
         :param website:
         :param address:
-        :param state:
-        :param lga:
+        :param Type:
+        :param settlement_bank:
+        :param account_number:
         :param company_Name:
         :return:
         """
@@ -82,8 +86,9 @@ class Client(BasePayantAPI):
             "phone": phone,
             "website": website,
             "address": address,
-            "state": state,
-            "lga": lga
+            "type": Type,
+            "settlement_bank": settlement_bank,
+            "account_number": account_number
         }
         return self._exec_request('PUT', url, request_data)
 
