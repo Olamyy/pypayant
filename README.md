@@ -42,7 +42,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 ##Usage
 
 ```python
-   from pypyant import Client, Payment, Invoice, Products, Misc
+   from pypayant import Client, Payment, Invoice, Products, Misc
    
    
    
