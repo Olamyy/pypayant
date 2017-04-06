@@ -42,7 +42,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
 ##Usage
 
 ```python
-   from pypyant import Client, Payment, Invoice, Products, Misc
+   from pypayant import Client, Payment, Invoice, Products, Misc
    
    
    
@@ -54,7 +54,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
     
    #Add a new client
    response = client.add(first_name="Olamilekan",last_name"Wahab",email="olamyy53@gmail.com",phone="000000000000",
-                website=None, address=None, state=None, lga=None,
+                website=None, address=None, Type=None, settlement_bank=None, account_number=None,
                 company_name=None)
     
     # A tuple of 3 elements is always returned if successful or if there
@@ -72,8 +72,6 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
                  phone="1111111111",
                  website="github.com/Olamyy",
                  address="Ilab, Obafemi Awolowo University",
-                 state="Osun",
-                 lga="Ife",
                  company_name="Yes Inc.") 
     
    #Delete a client
@@ -100,9 +98,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
             "email": "jane@alberthospital.com",
             "phone": "+2348012345678",
             "website": "http://www.alberthospital.com",
-            "address": "Wase II",
-            "state": "37",
-            "lga": "782"
+            "address": "Wase II"
             }
    invoice.add(new=True, client, due_date="12/30/2016",fee_bearer="client",
                   items={
@@ -166,11 +162,7 @@ If an error like ```No module named pypyant``` pops up, then the installation wa
   misc = Misc(auth_ke=" ")
   
   #Get states
-  misc.get_states()
-
-  
-  #Get lga
-  misc.get_lga(state_id=1)
+  misc.get_banks()
    
 ```
 

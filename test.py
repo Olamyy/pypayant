@@ -20,9 +20,7 @@ class TestConfig(object):
         "email": "jane@alberthospital.com",
         "phone": "+2348012345678",
         "website": "http://www.alberthospital.com",
-        "address": "Wase II",
-        "state": "37",
-        "lga": "782"
+        "address": "Wase II"
     }
 
 
